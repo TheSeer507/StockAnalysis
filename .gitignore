@@ -36,6 +36,8 @@ logs/
 # ── Trading data / live state ─────────────────────────────────────────────────
 data/
 my_capital_bot/open_positions.csv
+my_capital_bot/models/
+my_capital_bot/watchlist_report.txt
 Kraken_trend_bot/data/
 
 # ── Backtest / chart outputs ──────────────────────────────────────────────────
