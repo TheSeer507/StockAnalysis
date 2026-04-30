@@ -1,0 +1,50 @@
+# ── Secrets & environment variables ──────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Virtual environments ──────────────────────────────────────────────────────
+venv/
+.venv/
+env/
+.env/
+
+# ── ML model artifacts (large binaries) ──────────────────────────────────────
+*.pth
+*.pt
+*.npy
+*.pkl
+*.h5
+*.onnx
+ml/
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+logs/
+*.log
+*.log.*
+
+# ── Trading data / live state ─────────────────────────────────────────────────
+data/
+my_capital_bot/open_positions.csv
+Kraken_trend_bot/data/
+
+# ── Backtest / chart outputs ──────────────────────────────────────────────────
+Kraken_trend_bot/backtest/results/
+Kraken_trend_bot/charts/
+
+# ── IDE / OS ──────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db

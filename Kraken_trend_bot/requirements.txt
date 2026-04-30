@@ -1,0 +1,11 @@
+ccxt
+pandas
+numpy
+pyyaml
+python-dotenv
+scikit-learn
+joblib
+torch
+feedparser
+optuna
+matplotlib

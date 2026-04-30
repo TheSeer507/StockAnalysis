@@ -1,0 +1,261 @@
+mode: live
+safety:
+  allow_live_trading: false
+  execute_trades: false
+exchange:
+  name: kraken
+  pair: BTC/USD
+  timeframe: 15m
+  base_currency: USD
+screener:
+  top_volume_count: 100
+  recommendations_count: 5
+  reco_every_loops: 2
+bot:
+  poll_interval_sec: 60
+  min_candles: 120
+  portfolio_scan_every_loops: 2
+risk:
+  risk_per_trade_pct: 15.0
+  max_position_pct: 12.0
+  max_trade_notional: 10.0
+  max_open_positions: 12
+  min_equity: 10.0
+position_management:
+  manage_existing_positions: true
+  min_trade_notional: 5.0
+  allow_compound: true
+  require_long_for_entry: true
+  min_hold_bars: 3
+  cooldown_bars_after_stop: 5
+  take_profit:
+    enabled: true
+    levels:
+    - pct: 10
+      sell_pct: 15
+    - pct: 25
+      sell_pct: 20
+    - pct: 50
+      sell_pct: 25
+    - pct: 100
+      sell_pct: 40
+  trailing_stop:
+    enabled: true
+    arm_after_pct: 5
+    trail_pct: 6
+  stop_loss:
+    enabled: true
+    stop_pct: 8
+portfolio:
+  base_currency: USD
+  core_targets:
+    BTC: 0.45
+    ETH: 0.2
+    SOL: 0.1
+    XMR: 0.1
+  stable_target_pct: 0.1
+  explore_target_pct: 0.3
+  stable_assets:
+  - USD
+  - USDG
+  - USDT
+  - USDC
+  allowed_explore_assets:
+  - XRP
+  - ATOM
+  stops:
+    BTC: 80000
+    ETH: 2700
+    SOL: 130
+    XMR: 360
+    XRP: 1.9
+    ATOM: 2.2
+  rebalance:
+    enabled: true
+    band_pct: 0.02
+    every_loops: 10
+    max_trade_notional: 25
+    max_total_notional_per_cycle: 50
+ml:
+  enabled: true
+  auto_train: true
+  retrain_days: 7
+  model_path: data/torch_tp_forecaster.pt
+  train_symbols: 150
+  history_days: 120
+  training_timeframe: 15m
+  ohlcv_page_limit: 720
+  rate_limit_sleep_sec: 1.0
+  cache_ohlcv: false
+  lookback: 64
+  horizon_bars: 96
+  stride: 3
+  val_frac: 0.2
+  ema_fast: 20
+  ema_slow: 50
+  rsi_period: 14
+  atr_period: 14
+  epochs: 120
+  batch_size: 512
+  lr: 0.0007472397689332936
+  hidden_size: 320
+  num_layers: 4
+  dropout: 0.2
+  weight_decay: 0.0042856634196503434
+  grad_clip: 0.7
+  use_amp: true
+  use_onecycle_lr: true
+  early_stop_patience: 10
+  quantiles:
+  - 0.5
+  - 0.8
+  - 0.9
+ml_1d:
+  history_days: 720
+  lookback: 60
+  horizon_bars: 14
+  stride: 4
+  train_symbols: 100
+  epochs: 100
+  batch_size: 256
+  hidden_size: 256
+  num_layers: 3
+  dropout: 0.3
+  lr: 0.0005
+  weight_decay: 0.0002
+  early_stop_patience: 12
+  use_onecycle_lr: true
+ml_4h:
+  history_days: 360
+  lookback: 64
+  horizon_bars: 42
+  stride: 10
+  train_symbols: 100
+longterm_ml:
+  enabled: true
+  auto_train: true
+  retrain_days: 14
+  model_path: data/longterm_forecaster.pt
+  train_symbols: 80
+  history_days: 365
+  lookback: 90
+  horizon_days:
+  - 7
+  - 14
+  - 30
+  stride: 7
+  val_frac: 0.2
+  epochs: 80
+  batch_size: 256
+  lr: 0.0005
+  hidden_size: 192
+  num_layers: 3
+  dropout: 0.25
+  weight_decay: 0.0001
+  grad_clip: 0.5
+  early_stop_patience: 12
+  quantiles:
+  - 0.5
+  - 0.8
+  - 0.9
+news:
+  enabled: true
+  refresh_sec: 600
+  max_new_items: 20
+  max_state_items: 4000
+  print_when_no_new: true
+  state_path: data/news_state.json
+  sources:
+  - name: CoinDesk
+    url: https://www.coindesk.com/arc/outboundfeeds/rss/
+  - name: Cointelegraph
+    url: https://cointelegraph.com/rss
+  - name: CryptoSlate
+    url: https://cryptoslate.com/feed/
+  - name: CryptoPotato
+    url: https://cryptopotato.com/feed/
+  - name: The Defiant
+    url: https://thedefiant.io/feed/
+  - name: Decrypt
+    url: https://decrypt.co/feed
+  - name: Bitcoin Magazine
+    url: https://bitcoinmagazine.com/feed
+  - name: The Block
+    url: https://www.theblock.co/rss.xml
+  - name: CryptoNews
+    url: https://cryptonews.com/news/feed/
+  - name: NewsBTC
+    url: https://www.newsbtc.com/feed/
+  - name: CoinJournal
+    url: https://coinjournal.net/feed/
+  - name: BeInCrypto
+    url: https://beincrypto.com/feed/
+  - name: CoinPost (Japan)
+    url: https://coinpost.jp/?feed=rss2
+  - name: Cointelegraph Japan
+    url: https://jp.cointelegraph.com/rss
+  - name: "Bitcoin\xE6\u2014\xA5\xE6\u0153\xAC\xE8\xAA\u017E\xE6\u0192\u2026\xE5\_\
+      \xB1\xE3\u201A\xB5\xE3\u201A\xA4\xE3\u0192\u02C6"
+    url: https://bitcoin-matome.info/feed
+  - name: TokenPost Korea
+    url: https://www.tokenpost.kr/rss
+  - name: Cointelegraph Korea
+    url: https://kr.cointelegraph.com/rss
+  - name: CoinReaders Korea
+    url: https://www.coinreaders.com/feed
+  - name: CityAM Crypto (UK)
+    url: https://www.cityam.com/london/crypto/feed/
+  - name: Cointelegraph UK
+    url: https://cointelegraph.com/rss/tag/united-kingdom
+  - name: CryptoNews UK
+    url: https://cryptonews.com/news/uk/feed/
+  - name: BTC-ECHO (Germany)
+    url: https://www.btc-echo.de/feed/
+  - name: Cointelegraph Germany
+    url: https://de.cointelegraph.com/rss
+  - name: Bitcoin-Bude (Germany)
+    url: https://bitcoin-bude.de/feed/
+  - name: Bitcoinist
+    url: https://bitcoinist.com/feed/
+  - name: CCN
+    url: https://www.ccn.com/feed/
+  - name: CryptoGlobe
+    url: https://www.cryptoglobe.com/latest/feed/
+  high_impact_keywords:
+  - etf
+  - sec
+  - cftc
+  - fomc
+  - cpi
+  - inflation
+  - rate
+  - lawsuit
+  - settlement
+  - hack
+  - exploit
+  - breach
+  - outage
+  - halt
+  - delist
+  - listing
+  - bankruptcy
+  - insolvent
+  - liquidation
+  - leverage
+  - upgrade
+  - fork
+  - airdrop
+  include_general_macro_news: true
+  min_macro_score: 0.5
+sentiment:
+  enabled: true
+  use_for_recommendations: true
+  min_score_for_buy: -0.3
+  score_weight: 0.1
+  lookback_hours: 24.0
+ml_tracking:
+  enabled: true
+  data_path: data/ml_predictions.json
+  report_every_loops: 120
+  max_records: 10000
+  auto_retrain_on_poor_performance: false
